@@ -10,7 +10,7 @@ const Users = () => {
 
     useEffect(() => {
         dispatch(fetchCustomers())
-    }, [ ])
+    }, [dispatch])
 
     
     return (
