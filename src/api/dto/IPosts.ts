@@ -9,4 +9,5 @@ export interface IPosts {
     posts: IPost[];
     isLoading: boolean;
     error: string;
+    post: IPost;
 }

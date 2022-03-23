@@ -1,12 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IPosts } from '../../api/dto/IPosts';
-import { deletePosts, fetchPosts, addNewPost } from './PostsThunk';
+import { deletePosts, fetchPosts, addNewPost, fetchPost } from './PostsThunk';
 
 
 const initialState: IPosts = {
     posts: [],
     isLoading: false,
-    error: ''
+    error: '',
+    post: {
+        userId: 0,
+        id: 0,
+        title: '',
+        body: '',
+    },
 }
 
 export const PostsSlice = createSlice({
@@ -30,6 +36,8 @@ export const PostsSlice = createSlice({
             state.isLoading = false;
             state.error = action.payload;
         },
+
+
         [deletePosts.fulfilled.type]: (state, action) => {
             state.posts = state.posts.filter(e => e.id !== action.payload)
             state.isLoading = false;
@@ -41,9 +49,16 @@ export const PostsSlice = createSlice({
             state.isLoading = false;
             state.error = action.payload;
         },
+
+
         [addNewPost.fulfilled.type]: (state, action) => {
             state.posts.push(action.payload)
         },
+        
+        [fetchPost.fulfilled.type]: (state, action) => {
+            state.post = action.payload;
+        },
+
         
     }
 })

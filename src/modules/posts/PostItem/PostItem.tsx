@@ -1,4 +1,5 @@
 import { Button } from 'antd';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAppDispatch } from '../../../store/hooks/redux';
 import { deletePosts } from '../PostsThunk';
@@ -14,7 +15,7 @@ const PostItem = ({post}: IProps) => {
     return (
         <Wrapper>
             <div>
-                <h1>{post.title} </h1>
+                <h1><Link to={`/home/reports/${post.id}`}>{post.title} </Link></h1>
                 <p>{post.body}</p>
             </div>
             <div style={{ marginLeft: 10 }}>

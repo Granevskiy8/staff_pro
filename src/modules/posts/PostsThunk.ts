@@ -10,6 +10,14 @@ export const fetchPosts = createAsyncThunk(
     }
 )
 
+export const fetchPost = createAsyncThunk(
+    'fetchPost',
+    async (id: number, thunkAPI) => {
+        const response = await postsApi.getPost(id)
+        return response
+    }
+)
+
 export const deletePosts = createAsyncThunk(
     'deleteposts',
     async (id: number, thunkAPI) => {

@@ -15,6 +15,7 @@ import Reports from "../components/page/Reports/Reports";
 import Settings from "../components/page/Settings/Settings";
 import SignIn from "../components/page/SignIn/SignIn";
 import SignUp from "../components/page/SignUp/SignUp";
+import PostDetail from './../modules/posts/PostDetail/PostDetail';
 
 const RouterApp = () => {
     return (
@@ -26,6 +27,7 @@ const RouterApp = () => {
                 <Route path='home' element={<Home/>}>
                     <Route path="dashboard" element={<Dashboard/>}/>
                     <Route path="reports" element={<Reports/>}/>
+                    <Route path="reports/:id" element={<PostDetail/>}/>
                     <Route path="documents" element={<Documents/>}>
                         <Route path="invoices" element={<Invoices/>}/>
                         <Route path="drafts" element={<Drafts/>}/>
