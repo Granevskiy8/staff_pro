@@ -40,8 +40,12 @@ const AddNewInvoicers = ({droverDisplay}: any) => {
                 <Form.Item required={false} name='patronymic' rules={[{ required: true, message: 'Введите отчество'}]}>
                     <Input placeholder="Отчество" />
                 </Form.Item>
-                <Form.Item required={false} name='position' rules={[{ required: true, message: 'Введите должность'}]}>
-                    <Input placeholder="Должность" />
+                <Form.Item required={false} name='position' rules={[{ required: true, message: 'Выберете должность'}]}>
+                    <Select placeholder="Должность">
+                        <Option value='Тестировщик'>Тестировщик</Option>
+                        <Option value='Разработчик'>Разработчик</Option>
+                        <Option value='Менеджер'>Менеджер</Option>
+                    </Select>
                 </Form.Item>
                 <Form.Item label='Дата рождения'>
                     <Form.Item name='day' required={false} rules={[{ required: true, message: 'Введите день' }]} style={{ display: 'inline-block', width: '20%', margin: '0' }}>
