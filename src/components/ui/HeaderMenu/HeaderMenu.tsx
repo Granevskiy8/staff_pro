@@ -12,7 +12,8 @@ const { Header } = Layout;
 const HeaderMenu = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch()
-    const user = useAppSelector(state => state.users.authUser[0])
+    const user = useAppSelector(state => state.users.authUser)
+    console.log(user)
     const {userOut} = UsersSlice.actions
 
     const location = useLocation();

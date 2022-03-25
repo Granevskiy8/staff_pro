@@ -16,7 +16,7 @@ export const UsersSlice = createSlice({
             state.users.push(action.payload)
         },
         authUser(state, action) {
-            state.authUser = state.users.filter(user => user.email === action.payload)
+            state.authUser = state.users.find(user => user.email === action.payload)
         },
         userOut(state) {
             state.authUser = ''
