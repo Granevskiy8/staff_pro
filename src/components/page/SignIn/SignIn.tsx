@@ -5,8 +5,22 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useAppSelector } from '../../../store/hooks/redux';
 import { useAppDispatch } from './../../../store/hooks/redux';
 import { UsersSlice } from '../../../modules/users/UsersSlice';
+import { useTranslation } from "react-i18next";
+import {GlobalOutlined} from '@ant-design/icons'
 
 const SignIn = () => {
+    const { t, i18n } = useTranslation();
+    const [len, setLen] = useState('русский')
+    const changeLanguage = () => {
+        if (i18n.language === 'en') {
+            i18n.changeLanguage('ru');
+            setLen('english')
+        }
+        else {
+            i18n.changeLanguage('en')
+            setLen('русский')
+        }
+      };
     const dispatch = useAppDispatch();
     const {authUser} = UsersSlice.actions
     const onClose = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -16,7 +30,7 @@ const SignIn = () => {
     const navigate = useNavigate();
     const [error, setError] = useState(false)
     const alert = <Alert
-    description="Пользователь с таким эл. адресом и паролем не найден."
+    description={t('signIn.alertText')}
     type="error"
     closable
     onClose={onClose}
@@ -38,11 +52,20 @@ const SignIn = () => {
 
 
     return (
+        <>
+        <Locales>
+            <div style={{ paddingRight: 10, marginTop: -10 }}>
+                <GlobalOutlined />
+            </div>
+            <div>
+                <p>{t('signIn.lengText')} <Button onClick={changeLanguage} style={{padding: 0}} type="link">{len}?</Button></p>
+            </div>
+        </Locales>
         <Wrapper>
             <LeftBox>
                 <Title>
                     <p>Staff Pro</p>
-                    <h1>HR processes are <br/> automated, <br/> welcome back!</h1>
+                    <h1>HR {t('signIn.leftTitle1')} <br/> {t('signIn.leftTitle2')} <br/> {t('signIn.leftTitle3')}</h1>
                 </Title>
                 <Image>
                     <img src='/assets/img/Vector.png' alt='SignInLogo'/>
@@ -50,38 +73,46 @@ const SignIn = () => {
             </LeftBox>
             <RightBox>
                 <Register>
-                    <p>Нет аккаунта? <NavLink to='sign_up'><Button type="link">Зарегистрироваться</Button></NavLink></p>
+                    <p>{t('signIn.signUpTtile')} <NavLink to='sign_up'><Button type="link">{t('signIn.signUp')}</Button></NavLink></p>
                 </Register>
                 <AlertMes>
                     {error && alert}
                 </AlertMes>
                 <SignInForm>
-                    <h1>Войти в Staff Pro</h1>
+                    <h1>{t('signIn.formTitle')} Staff Pro</h1>
                     <Form layout="vertical" onFinish={onFinish} form={form} >
-                        <Form.Item required={false} name='email' label="Эл. адресс" rules={[{ required: true, message: 'Пожалуйста введите свой эл. адресс', type: 'email' }]}>
+                        <Form.Item required={false} name='email' label={t('signIn.emailLabel')} rules={[{ required: true, message: t('signIn.emailMes'), type: 'email' }]}>
                             <Input />
                         </Form.Item>
-                        <Form.Item required={false} name='password' label="Пароль" rules={[{ required: true, message: 'Пожалуйста введите свой пароль' }]}>
+                        <Form.Item required={false} name='password' label={t('signIn.pasLabel')} rules={[{ required: true, message: t('signIn.pasMes') }]}>
                             <Input />
                         </Form.Item>
                         <CheckRow>
                             <Form.Item>
-                                <Checkbox>Запомнить меня</Checkbox>
+                                <Checkbox>{t('signIn.checkboxTitle')}</Checkbox>
                             </Form.Item>
-                            <NavLink to='change_password'><Button type="link">Забыли пароль ?</Button></NavLink>
+                            <NavLink to='change_password'><Button type="link">{t('signIn.pasLink')}</Button></NavLink>
                         </CheckRow>
                         <Form.Item>
-                            <Button type='primary' htmlType="submit">Войти</Button>
+                            <Button type='primary' htmlType="submit">{t('signIn.button')}</Button>
                         </Form.Item>
                     </Form>
                 </SignInForm>
             </RightBox>
 
         </Wrapper>
+        </>
     )
 }
 
 export default SignIn
+
+const Locales = styled.div`
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+`
 
 const Wrapper = styled.div`
     display: flex;

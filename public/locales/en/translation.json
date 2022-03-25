@@ -1,0 +1,19 @@
+{
+    "signIn": {
+        "lengText": "Change language to",
+        "leftTitle1": "processes are",
+        "leftTitle2": "automated,",
+        "leftTitle3": "welcome back!",
+        "signUpTtile": "Don't have an account ?",
+        "signUp": "Sign Up",
+        "formTitle": "Login to",
+        "alertText": "User with this email address and password not found.",
+        "emailLabel": "Email",
+        "emailMes": "Please enter your email address",
+        "pasLabel": "Password",
+        "pasMes": "Please enter your password",
+        "checkboxTitle": "Remember me",
+        "pasLink": "Forgot your password ?",
+        "button": "Sign In"
+    }
+}
