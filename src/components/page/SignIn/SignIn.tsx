@@ -3,8 +3,12 @@ import {useState} from 'react';
 import { Button, Input, Checkbox, Form, Alert} from 'antd';
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAppSelector } from '../../../store/hooks/redux';
+import { useAppDispatch } from './../../../store/hooks/redux';
+import { UsersSlice } from '../../../modules/users/UsersSlice';
 
 const SignIn = () => {
+    const dispatch = useAppDispatch();
+    const {authUser} = UsersSlice.actions
     const onClose = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         setError(false)
     };
@@ -24,6 +28,7 @@ const SignIn = () => {
         const password = values.password;
         console.log('Received values of form: ', email, password);
         if (users.some(e => e.email === email && e.password === password)) {
+            dispatch(authUser(email))
             navigate('home/documents/invoices')
         } else {
             form.resetFields();

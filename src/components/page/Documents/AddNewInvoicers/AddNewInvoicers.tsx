@@ -48,8 +48,8 @@ const AddNewInvoicers = ({droverDisplay}: any) => {
                     </Select>
                 </Form.Item>
                 <Form.Item label='Дата рождения'>
-                    <Form.Item name='day' required={false} rules={[{ required: true, message: 'Введите день' }]} style={{ display: 'inline-block', width: '20%', margin: '0' }}>
-                        <InputNumber placeholder='День'/>
+                    <Form.Item name='day' required={false} rules={[{ required: true, message: 'день' }]} style={{ display: 'inline-block', width: '20%', margin: '0' }}>
+                        <InputNumber placeholder='День'  min={1} max={31}/>
                     </Form.Item>
                     <Form.Item name='month' required={false} rules={[{ required: true, message: 'Введите месяц' }]} style={{ display: 'inline-block', width: '40%', paddingLeft: '24px', margin: '0'}}>
                         <Select placeholder="Месяц">
@@ -66,7 +66,7 @@ const AddNewInvoicers = ({droverDisplay}: any) => {
                         </Select>
                     </Form.Item>
                 </Form.Item>
-                <Form.Item name='tlephone' required={false}>
+                <Form.Item name='tlephone' required={false} rules={[{ pattern: /^(\+)(\d+$)/ , message: 'Некорректный номер' }]}>
                     <Input placeholder='Телефон (опционально)'/>
                 </Form.Item>
                 <Form.Item name='gender' required={false} rules={[{ required: true, message: 'Выберете пол' }]}>

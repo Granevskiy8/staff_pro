@@ -4,7 +4,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 const initialState: IUsers = {
     users: [
     {email: 'sasha@mail.ru', password: '123456', surname: 'Granevskiy', name: 'Sasha', patronymic: 'Vladimirovich', day: 8, month: 'Март', year: '1998', telephone: 77915168, gender: 'Мужской'},
-    ]
+    ],
+    authUser: '',
 }
 
 export const UsersSlice = createSlice({
@@ -13,6 +14,12 @@ export const UsersSlice = createSlice({
     reducers: {
         addNewUser(state, action: PayloadAction<IUser>) {
             state.users.push(action.payload)
+        },
+        authUser(state, action) {
+            state.authUser = state.users.filter(user => user.email === action.payload)
+        },
+        userOut(state) {
+            state.authUser = ''
         },
         changePassword(state, action) {
             state.users.some(e => {

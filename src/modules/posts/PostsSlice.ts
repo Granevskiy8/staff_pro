@@ -19,9 +19,6 @@ export const PostsSlice = createSlice({
     name: 'posts',
     initialState,
     reducers: {
-        romovePost(state, action){
-            state.posts = state.posts.filter(e => e.id !== action.payload)
-        }
     },
     extraReducers: {
         [fetchPosts.fulfilled.type]: (state, action) => {
@@ -52,7 +49,7 @@ export const PostsSlice = createSlice({
 
 
         [addNewPost.fulfilled.type]: (state, action) => {
-            state.posts.push(action.payload)
+            state.posts.unshift(action.payload)
         },
         
         [fetchPost.fulfilled.type]: (state, action) => {

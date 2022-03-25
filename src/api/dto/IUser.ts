@@ -13,4 +13,5 @@ export interface IUser {
 
 export interface IUsers {
     users: IUser[]
+    authUser: any
 }
